@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dummy</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css', media: 'all' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+  </head>
+
+  <body class="m-4">
+    <%= yield %>
+  </body>
+</html>
