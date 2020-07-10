@@ -2,16 +2,7 @@ module Blokkade
   class Base < ApplicationRecord
     self.abstract_class = true
 
-    @@kinds = []
     @@field_types = {}
-
-    def self.kinds=(val)
-      @@kinds = val
-    end
-
-    def self.kinds
-      @@kinds
-    end
 
     def self.has_field_type(type, adapter: nil, &block)
       if !adapter && !block_given?
@@ -39,8 +30,9 @@ module Blokkade
     end
 
     def self.[](kind)
-      if self.kinds.include? kind.to_sym
-        kind.to_s.camelcase.constantize
+      klass = kind.to_s.camelcase.safe_constantize
+      if klass && klass.superclass == Blokk
+        klass
       else
         raise UnkownBlokkError, "#{kind} is not a valid blokk kind"
       end

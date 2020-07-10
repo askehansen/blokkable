@@ -53,8 +53,6 @@ module Blokkade::Blokkable
   private
 
   def set_kind
-    if Blokk.kinds.include? self.class.kind_of
-      self.kind = self.class.kind_of
-    end
+    self.kind = self.class.kind_of
   end
 end
