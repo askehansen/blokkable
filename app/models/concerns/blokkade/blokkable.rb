@@ -27,19 +27,15 @@ module Blokkade::Blokkable
       end
 
       @fields[name] = type
-      field_type = self.field_types[type]
-
-      if field_type.respond_to?(:call)
-        field_type.call(name)
-      elsif field_type == :json
-        define_method "#{name}=" do |val|
-          self.send("#{type}_fields?=", self.send("#{type}_fields").to_h.tap { |h| h[name.to_s] = val })
-        end
-        define_method name do
-          self.send("#{type}_fields").to_h[name.to_s]
-        end
+      type_definition = self.field_types[type]
+      if type_definition.respond_to?(:call)
+        type_definition.call(name)
+      elsif type_definition == :string
+        Blokkade::StringAdapter.call(self, type, name)
+      elsif type_definition == :boolean
+        Blokkade::BooleanAdapter.call(self, type, name)
       else
-        raise
+        raise Blokk::UnknownAdapterError, "#{type_definition} is not a valid adapter. Maybe pass a block instead?"
       end
     end
 

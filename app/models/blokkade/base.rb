@@ -41,6 +41,8 @@ module Blokkade
     end
     class UnknownTypeError < StandardError
     end
+    class UnknownAdapterError < StandardError
+    end
 
   end
 end
