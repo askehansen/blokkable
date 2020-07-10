@@ -1,6 +1,10 @@
 class Blokk < Blokkade::Base
   self.kinds = [:text_blokk, :header_blokk]
 
+  has_field_type :rich_text do |name|
+    has_rich_text name
+  end
+  
   has_field_type :text do |name|
     define_method "#{name}=" do |val|
       self.text_fields = text_fields.to_h.tap do |h|

@@ -1,7 +1,6 @@
 module Blokkade
   class Base < ApplicationRecord
     self.abstract_class = true
-    # belongs_to :page
 
     @@kinds = []
     @@field_types = {}
