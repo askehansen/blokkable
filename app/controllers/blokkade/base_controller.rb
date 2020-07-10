@@ -36,7 +36,7 @@ class Blokkade::BaseController < ApplicationController
 
   def render_fields_for(blokk, form)
     blokk.class.fields.map do |key, type|
-      render partial: "blokks/fields/#{type}", locals: { key: key, form: form, kind: blokk.kind }
+      render_to_string partial: "blokks/fields/#{type}", locals: { key: key, form: form, kind: blokk.kind }
     end.join("\n").html_safe
   end
 

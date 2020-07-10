@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_080133) do
+ActiveRecord::Schema.define(version: 2020_07_10_015159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_080133) do
     t.integer "position"
     t.json "string_fields"
     t.json "text_fields"
+    t.json "checkbox_fields"
   end
 
 end

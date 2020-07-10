@@ -27,7 +27,20 @@ module Blokkade::Blokkable
       end
 
       @fields[name] = type
-      self.field_types[type].call(name)
+      field_type = self.field_types[type]
+
+      if field_type.respond_to?(:call)
+        field_type.call(name)
+      elsif field_type == :json
+        define_method "#{name}=" do |val|
+          self.send("#{type}_fields?=", self.send("#{type}_fields").to_h.tap { |h| h[name.to_s] = val })
+        end
+        define_method name do
+          self.send("#{type}_fields").to_h[name.to_s]
+        end
+      else
+        raise
+      end
     end
 
   end

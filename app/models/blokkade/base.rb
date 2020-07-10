@@ -13,8 +13,8 @@ module Blokkade
       @@kinds
     end
 
-    def self.has_field_type(type, &block)
-      @@field_types[type] = block
+    def self.has_field_type(type, adapter: nil, &block)
+      @@field_types[type] = adapter || block
     end
 
     def self.field_types
