@@ -1,8 +1,8 @@
-require "blokkade/engine"
-require "blokkade/adapters/boolean_adapter"
-require "blokkade/adapters/string_adapter"
+require "blokkable/engine"
+require "blokkable/adapters/boolean_adapter"
+require "blokkable/adapters/string_adapter"
 
-module Blokkade
+module Blokkable
   class UnkownKindError < StandardError
   end
   class UnknownTypeError < StandardError

@@ -1,4 +1,4 @@
-module Blokkade::Model
+module Blokkable::Model
   extend ActiveSupport::Concern
 
   included do
@@ -23,27 +23,27 @@ module Blokkade::Model
       if klass
         klass
       else
-        raise Blokkade::UnkownKindError, "#{kind} is not a valid kind"
+        raise Blokkable::UnkownKindError, "#{kind} is not a valid kind"
       end
     end
 
     def has_field_type(type, adapter: nil, &block)
       if !adapter && !block_given?
-        raise Blokkade::InvalidAdapterError, "Use an adapter or a block"
+        raise Blokkable::InvalidAdapterError, "Use an adapter or a block"
       end
 
       @@field_types[type] = case adapter
       when nil
         block
       when :string
-        Blokkade::StringAdapter
+        Blokkable::StringAdapter
       when :boolean
-        Blokkade::BooleanAdapter
+        Blokkable::BooleanAdapter
       else
         if adapter.respond_to?(:call)
           adapter
         else
-          raise Blokkade::InvalidAdapterError, "#{adapter} is not a valid adapter"
+          raise Blokkable::InvalidAdapterError, "#{adapter} is not a valid adapter"
         end
       end
     end
@@ -62,7 +62,7 @@ module Blokkade::Model
 
     def field(name, type = :string)
       unless self.field_types.keys.include? type
-        raise Blokkade::UnknownTypeError, "#{type} is not a valid field type"
+        raise Blokkable::UnknownTypeError, "#{type} is not a valid field type"
       end
       fields = self.class_variable_get("@@fields")
       fields[name] = type

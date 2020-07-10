@@ -1,6 +1,6 @@
 require "rails/engine"
 
-module Blokkade
+module Blokkable
   class Engine < Rails::Engine
   end
 end

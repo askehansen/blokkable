@@ -1,12 +1,12 @@
 $:.push File.expand_path("lib", __dir__)
 
 # Maintain your gem's version:
-require "blokkade/version"
+require "blokkable/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
-  spec.name        = "blokkade"
-  spec.version     = Blokkade::VERSION
+  spec.name        = "blokkable"
+  spec.version     = Blokkable::VERSION
   spec.authors     = ["Aske Hansen"]
   spec.email       = ["aske@deeco.dk"]
   spec.homepage    = "https://www.deeco.dk"

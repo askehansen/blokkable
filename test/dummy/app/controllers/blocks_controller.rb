@@ -1,5 +1,5 @@
 class BlocksController < ApplicationController
-  include Blokkade::Controller
+  include Blokkable::Controller
 
   private
 

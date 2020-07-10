@@ -1,4 +1,4 @@
-# Blokkade
+# Blokkable
 Short description and motivation.
 
 ## Usage
@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'blokkade'
+gem 'blokkable'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install blokkade
+$ gem install blokkable
 ```
 
 ## Contributing

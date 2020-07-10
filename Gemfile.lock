@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    blokkade (0.1.0)
+    blokkable (0.1.0)
       rails (~> 6.0.3, >= 6.0.3.2)
 
 GEM
@@ -141,7 +141,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  blokkade!
+  blokkable!
   pg
   slim
 

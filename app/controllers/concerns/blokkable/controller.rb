@@ -1,4 +1,4 @@
-module Blokkade::Controller
+module Blokkable::Controller
   extend ActiveSupport::Concern
 
   included do
