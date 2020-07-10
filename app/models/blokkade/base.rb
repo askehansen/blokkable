@@ -31,22 +31,22 @@ module Blokkade
 
     def self.[](kind)
       klass = kind.to_s.camelcase.safe_constantize
-      if klass && klass.superclass == Blokk
+      if klass
         klass
       else
-        raise UnkownBlokkError, "#{kind} is not a valid blokk kind"
+        raise UnkownKindError, "#{kind} is not a valid kind"
       end
     end
 
     def to_kind
-      Blokk[kind].find(self.id)
+      self.class[kind].find(self.id)
     end
 
     def as_kind
-      Blokk[kind].from(self)
+      self.class[kind].from(self)
     end
 
-    class UnkownBlokkError < StandardError
+    class UnkownKindError < StandardError
     end
     class UnknownTypeError < StandardError
     end

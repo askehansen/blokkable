@@ -1,19 +1,19 @@
 class Blokkade::BaseController < ApplicationController
-  before_action :set_blokk, only: [:show, :edit, :update, :destroy]
+  before_action :set_object, only: [:show, :edit, :update, :destroy]
   helper_method :render_fields_for
 
   def show
   end
 
   def new
-    @blokk = Blokk[kind].new
+    @object = klass[kind].new
   end
 
   def edit
   end
 
   def create
-    if @blokk = Blokk[kind].create(blokk_params)
+    if @object = klass[kind].create(object_params)
       redirect_to redirect_path
     else
       render "new"
@@ -21,7 +21,7 @@ class Blokkade::BaseController < ApplicationController
   end
 
   def update
-    if @blokk.update blokk_params
+    if @object.update object_params
       redirect_to redirect_path
     else
       render "edit"
@@ -34,17 +34,21 @@ class Blokkade::BaseController < ApplicationController
     "/"
   end
 
-  def render_fields_for(blokk, form)
-    blokk.class.fields.map do |key, type|
-      render_to_string partial: "blokks/fields/#{type}", locals: { key: key, form: form, kind: blokk.kind }
+  def klass
+    controller_name.singularize.titleize.constantize
+  end
+
+  def render_fields_for(object, form)
+    object.class.fields.map do |key, type|
+      render_to_string partial: "#{klass.to_s.downcase.pluralize}/fields/#{type}", locals: { key: key, form: form, kind: object.kind }
     end.join("\n").html_safe
   end
 
-  def set_blokk
-    @blokk = Blokk.find(params[:id]).to_kind
+  def set_object
+    @object = klass.find(params[:id]).to_kind
   end
 
-  def blokk_params
+  def object_params
     params[kind].permit!
   end
 

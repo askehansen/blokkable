@@ -1,4 +1,4 @@
-class Blokk < Blokkade::Base
+class Block < Blokkade::Base
 
   has_field_type :rich_text do |name|
     has_rich_text name

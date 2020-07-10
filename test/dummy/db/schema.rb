@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_10_015159) do
+ActiveRecord::Schema.define(version: 2020_07_10_033754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "blokks", force: :cascade do |t|
+  create_table "blocks", force: :cascade do |t|
     t.string "kind"
     t.integer "owner_id"
     t.integer "position"

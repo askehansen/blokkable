@@ -1,0 +1,9 @@
+= form_with model: @object, url: @object.new_record? ? blocks_path : block_path(@object) do |f|
+  = hidden_field nil, :kind, value: @object.kind
+
+  = render_fields_for(@object, f)
+
+  - if @object.invalid?
+    = @object.errors.full_messages
+
+  button.bg-green-500.font-bold.p-2.text-white.text-center type="submit" = @object.new_record? ? 'Create' : 'Save'

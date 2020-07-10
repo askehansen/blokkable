@@ -23,7 +23,7 @@ module Blokkade::Blokkable
 
     def field(name, type = :string)
       unless self.field_types.keys.include? type
-        raise Blokk::UnknownTypeError, "#{type} is not a valid field type"
+        raise UnknownTypeError, "#{type} is not a valid field type"
       end
 
       @fields[name] = type
@@ -33,7 +33,7 @@ module Blokkade::Blokkable
   end
 
   def to_partial_path
-    "blokks/templates/#{kind}"
+    "#{self.class.superclass.to_s.downcase.pluralize}/templates/#{kind}"
   end
 
   def to_kind
