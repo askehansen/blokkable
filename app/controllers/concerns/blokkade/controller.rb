@@ -1,6 +1,10 @@
-class Blokkade::BaseController < ApplicationController
-  before_action :set_object, only: [:show, :edit, :update, :destroy]
-  helper_method :render_fields_for
+module Blokkade::Controller
+  extend ActiveSupport::Concern
+
+  included do
+    before_action :set_object, only: [:show, :edit, :update, :destroy]
+    helper_method :render_fields_for
+  end
 
   def show
   end

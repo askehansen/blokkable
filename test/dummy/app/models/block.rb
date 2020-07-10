@@ -1,4 +1,5 @@
-class Block < Blokkade::Base
+class Block < ApplicationRecord
+  include Blokkade::Model
 
   has_field_type :rich_text do |name|
     has_rich_text name

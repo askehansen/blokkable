@@ -1,4 +1,5 @@
-class BlocksController < Blokkade::BaseController
+class BlocksController < ApplicationController
+  include Blokkade::Controller
 
   private
 
